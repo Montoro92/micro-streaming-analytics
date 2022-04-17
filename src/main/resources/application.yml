@@ -1,0 +1,9 @@
+spring:
+  rabbitmq:
+    host: rabbitmq
+    port: 15672
+    username: guest
+    password: guest
+    queue: streaminganalytics.queue
+    exchange: streaminganalytics.exchange
+    routingkey: streaminganalytics.routingkey
