@@ -1,5 +1,7 @@
 package com.example.microstreaminganalytics.controller;
 
+import com.example.microstreaminganalytics.entity.Calculations;
+import com.example.microstreaminganalytics.entity.Quartiles;
 import com.example.microstreaminganalytics.service.DeviceService;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.slf4j.Logger;
@@ -37,8 +39,48 @@ public class DeviceController {
     }
 
     @GetMapping(path = "/getDeviceInfo", consumes = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<List<JsonNode>> getDeviceInfo(@RequestBody String deviceInfo) throws UnknownHostException {
-        return ResponseEntity.ok(deviceService.getDeviceInfo(deviceInfo));
+    public ResponseEntity<List<JsonNode>> getDeviceInfo(@RequestBody String deviceId) throws UnknownHostException {
+        return ResponseEntity.ok(deviceService.getDeviceInfo(deviceId));
+    }
+
+    @GetMapping(path = "/getDeviceCalculations", consumes = MediaType.TEXT_PLAIN_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Calculations> getCalculationsOfDevice(@RequestBody String deviceId) throws UnknownHostException {
+        return ResponseEntity.ok(deviceService.getCalculations(deviceId));
+    }
+
+    @GetMapping(path = "/getDeviceMean", consumes = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> getDeviceMean(@RequestBody String deviceId) throws UnknownHostException {
+        return ResponseEntity.ok(deviceService.getDeviceMean(deviceId));
+    }
+
+    @GetMapping(path = "/getDeviceMedian", consumes = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> getDeviceMedian(@RequestBody String deviceId) throws UnknownHostException {
+        return ResponseEntity.ok(deviceService.getDeviceMedian(deviceId));
+    }
+
+    @GetMapping(path = "/getDeviceMode", consumes = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> getDeviceMode(@RequestBody String deviceId) throws UnknownHostException {
+        return ResponseEntity.ok(deviceService.getDeviceMode(deviceId));
+    }
+
+    @GetMapping(path = "/getDeviceStandardDeviation", consumes = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> getDeviceStandardDeviation(@RequestBody String deviceId) throws UnknownHostException {
+        return ResponseEntity.ok(deviceService.getDeviceStandardDeviation(deviceId));
+    }
+
+    @GetMapping(path = "/getDeviceQuartiles", consumes = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<Quartiles> getDeviceQuartiles(@RequestBody String deviceId) throws UnknownHostException {
+        return ResponseEntity.ok(deviceService.getDeviceQuartiles(deviceId));
+    }
+
+    @GetMapping(path = "/getDeviceMaximum", consumes = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> getDeviceMaximum(@RequestBody String deviceId) throws UnknownHostException {
+        return ResponseEntity.ok(deviceService.getDeviceMaximum(deviceId));
+    }
+
+    @GetMapping(path = "/getDeviceMinimum", consumes = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> getDeviceMinimum(@RequestBody String deviceId) throws UnknownHostException {
+        return ResponseEntity.ok(deviceService.getDeviceMinimum(deviceId));
     }
 
 }
